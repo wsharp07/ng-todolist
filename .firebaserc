@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ng-todolist-36363": {
+      "hosting": {
+        "ng-todolist": [
+          "ng-todolist-36363"
+        ]
+      }
+    }
+  }
+}

@@ -60,6 +60,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             }
           }
         },
@@ -69,6 +77,9 @@
             "browserTarget": "ng-todolist:build"
           },
           "configurations": {
+            "local": {
+              "browserTarget": "ng-todolist:build:local"
+            },
             "production": {
               "browserTarget": "ng-todolist:build:production"
             }
@@ -121,8 +132,13 @@
               "devServerTarget": "ng-todolist:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-todolist"
 }
