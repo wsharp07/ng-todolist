@@ -7,6 +7,8 @@ import {NgForm} from '@angular/forms';
 import { faPlusSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { AngularFireAction } from '@angular/fire/database/interfaces';
 
+import { TaskService } from '../task.service';
+
 @Component({
   selector: 'todo',
   templateUrl: './todo.component.html',
@@ -21,19 +23,10 @@ export class TodoComponent implements OnInit {
   faPlusSquare = faPlusSquare;
   faTrashAlt = faTrashAlt;
 
-  constructor(db: AngularFireDatabase) {
-    this.items = db.list('items').snapshotChanges();
-    this.itemsRef = db.list('items');
-  }
+  taskService: TaskService;
 
-  addItem(newTask: String) {
-    this.itemsRef.push({
-      task: newTask
-    })
-  }
-
-  removeItem(obj: AngularFireAction<any>) {
-    this.itemsRef.remove(obj.key);
+  constructor(taskService: TaskService) {
+    this.taskService = taskService;
   }
 
   onSubmit(frmAddTask: NgForm) {
@@ -43,7 +36,7 @@ export class TodoComponent implements OnInit {
       return;
     }
 
-    this.addItem(frmAddTask.value.newTask);
+    this.taskService.addTask(frmAddTask.value.newTask);
 
     frmAddTask.resetForm();
   }
