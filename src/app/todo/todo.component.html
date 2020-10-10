@@ -34,11 +34,11 @@
 </div>
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
-        <ul *ngFor="let item of items | async" class="list-group">
+        <ul *ngFor="let task of taskService.getTasks() | async" class="list-group">
             <li class="list-group-item"> 
-                {{ item.payload.val().task }} 
+                {{ task.payload.val().task }} 
                 <span class="float-right">
-                    <button class="btn btn-danger" (click)="removeItem(item)">
+                    <button class="btn btn-danger" (click)="taskService.removeTask(task)">
                         <fa-icon [icon]="faTrashAlt"></fa-icon>
                     </button>
                 </span>
