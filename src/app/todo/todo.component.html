@@ -1,19 +1,39 @@
-<h2>Todo List</h2>
 <div class="row">
-    <div class="col-md-4">
-        <form class="form-inline">
+    <div class="col-sm-8 offset-sm-2">
+        <h2>Todo List</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <form class="form-inline" #frmAddTask="ngForm" (ngSubmit)="onSubmit(frmAddTask)">
             <div class="form-group mx-sm-3 mb-2">
-                <input #newTask
-                (keyup.enter)="addItem(newTask.value)"
+                <input
+                (keyup.enter)="onSubmit(frmAddTask)"
+                name="newTask"
+                ngModel required #newTask="ngModel"
                 class="form-control" >
             </div>
-            <button (click)="addItem(newTask.value)" 
+            <button
                 class="btn btn-success mb-2" 
-                type="button">Add</button>
+                type="submit">Add
+                <fa-icon [icon]="faPlusSquare"></fa-icon>
+            </button>
         </form>
 
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
         <ul *ngFor="let item of items | async" class="list-group">
-            <li class="list-group-item"> {{ item | json }} </li>
+            <li class="list-group-item"> 
+                {{ item.payload.val().task }} 
+                <span class="float-right">
+                    <button class="btn btn-danger" (click)="removeItem(item)">
+                        <fa-icon [icon]="faTrashAlt"></fa-icon>
+                    </button>
+                </span>
+                
+            </li>
         </ul>
     </div>
 </div>
