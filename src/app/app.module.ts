@@ -10,8 +10,9 @@ import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 
 import { environment } from '../environments/environment';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MockTaskService } from './task.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     FormsModule
   ],
-  providers: [],
+  providers: [MockTaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
