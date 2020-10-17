@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-
 import {NgForm} from '@angular/forms';
 
 import { faPlusSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { AngularFireAction } from '@angular/fire/database/interfaces';
 
 import { TaskService } from '../task.service';
 
 @Component({
   selector: 'todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  providers: [TaskService]
 })
 
 
 export class TodoComponent implements OnInit {
 
-  items: Observable<any[]>;
-  itemsRef: AngularFireList<any>;
   faPlusSquare = faPlusSquare;
   faTrashAlt = faTrashAlt;
 
@@ -27,6 +22,10 @@ export class TodoComponent implements OnInit {
 
   constructor(taskService: TaskService) {
     this.taskService = taskService;
+  }
+
+  eeval(any: any){
+    return true;
   }
 
   onSubmit(frmAddTask: NgForm) {
